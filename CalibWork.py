@@ -31,7 +31,7 @@ def drawAxis(img, corners, imgpts):
 # termination criteria
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
-# prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
+# prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(9,6,0)
 objp = np.zeros((7*10,3), np.float32)
 objp[:,:2] = np.mgrid[0:10,0:7].T.reshape(-1,2)
 
@@ -64,7 +64,7 @@ for fname in images:
         # append the set of object points like (0,0,0), (1,0,0), (2,0,0), ...
         objpoints.append(objp)
 
-        # extract corners coordinates
+        # refine corners coordinates
         corners2 = cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
         imgpoints.append(corners2)
 
@@ -80,6 +80,7 @@ ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.sh
 saveCalibData(mtx, dist, rvecs, tvecs)
 
 # project 3D Axis to each image
+
 axis = np.float32([[3,0,0], [0,3,0], [0,0,-3]]).reshape(-1,3)
 for fname in images:
     img = cv2.imread(fname)
@@ -97,6 +98,6 @@ for fname in images:
  
         img = drawAxis(img, corners2, imgpts)
         cv2.imshow('Images with Axis',img)
-        k = cv2.waitKey(500)
+        k = cv2.waitKey()
 
 cv2.destroyAllWindows()

@@ -26,8 +26,6 @@ print("press 'c' to capture an image or press 'q' to exit...")
 
 iteration = 0
 while(True):
-    
-
     # get a frame
     ret, frame = cap.read()
     if not ret:
