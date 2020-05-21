@@ -71,7 +71,7 @@ for fname in images:
         # Draw and display the corners
         cv2.drawChessboardCorners(img, (10,7), corners2,ret)
         cv2.imshow('Images', img)
-        cv2.waitKey(1000)
+        cv2.waitKey()
 
 # start camera calibartion
 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
