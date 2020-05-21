@@ -29,12 +29,24 @@ for key in fileNode.keys():
         translation = ymlmtx[0:3, 3]
         t_gripper2base.append(translation)        
 
-R_cam2gripper, t_cam2gripper = cv2.calibrateHandEye(R_gripper2base, t_gripper2base, R_target2cam, t_target2cam)
+#test codes 
 
-# output results
-print(R_cam2gripper)
-print("---------------")
-print(t_cam2gripper)
+
+
+
+methodHE = [cv2.CALIB_HAND_EYE_TSAI, cv2.CALIB_HAND_EYE_PARK, cv2.CALIB_HAND_EYE_HORAUD, cv2.CALIB_HAND_EYE_ANDREFF, cv2.CALIB_HAND_EYE_DANIILIDIS]
+
+for mth in methodHE:
+    R_cam2gripper, t_cam2gripper = cv2.calibrateHandEye(R_gripper2base, t_gripper2base, R_target2cam, t_target2cam, None, None, mth)
+    cv2.calibrateHandEye(R_gripper2base, t_gripper2base, R_target2cam, t_target2cam, None, None, mth)
+    # output results
+    print("--------------------------------------")
+    print("Method %d" % mth)
+    print(R_cam2gripper)
+    print(t_cam2gripper)
+    print("--------------------------------------")
+
+
     
 
 
