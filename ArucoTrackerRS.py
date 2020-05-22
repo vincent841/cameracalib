@@ -35,7 +35,7 @@ while (True):
     gray = cv2.cvtColor(color_image, cv2.COLOR_BGR2GRAY)
 
     # set dictionary size depending on the aruco marker selected
-    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+    aruco_dict = aruco.Dictionary_get(aruco.DICT_5X5_1000)
 
     # detector parameters can be set here (List of detection parameters[3])
     parameters = aruco.DetectorParameters_create()
@@ -82,5 +82,7 @@ while (True):
         break
 
 # When everything done, release the capture
-cap.release()
-cv2.destroyAllWindows()
+# Stop streaming
+pipeline.stop()
+cv2.destroyAllWindows()   
+

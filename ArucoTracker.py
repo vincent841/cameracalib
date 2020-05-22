@@ -20,7 +20,7 @@ while (True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # set dictionary size depending on the aruco marker selected
-    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_1000)
+    aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_1000)
 
     # detector parameters can be set here (List of detection parameters[3])
     parameters = aruco.DetectorParameters_create()
